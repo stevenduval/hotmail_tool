@@ -3,6 +3,7 @@ const reloadBtn =  document.querySelector('.reload');
 const formatBtn =  document.querySelector('.format');
 const fileSelector = document.getElementById('file-selector');
 const reader = new FileReader();
+let filename = '';
 
 // detect when file is inserted
 fileSelector.addEventListener('change', (event) => {
@@ -12,6 +13,7 @@ fileSelector.addEventListener('change', (event) => {
             
 //read file as text which then fires load event to send data to formatting 
 const readFile = (file) => { 
+    filename = file.name.split('.')[0];
     reader.addEventListener('load', (event) => fileExport(event.target.result));
     reader.readAsText(file);
 }
@@ -94,7 +96,7 @@ const saveOutput = (data) => {
         const getDateTime = new Date().toLocaleString('en-gb').split(", ");
         const date = getDateTime[0].split("/").reverse().join("");
         const time = getDateTime[1].split(":").join("");
-        anchor.download = `hotmail_file_${date}${time}.csv`;
+        anchor.download = `${filename}_FLAGGED_${date}${time}.csv`;
         anchor.href = window.URL.createObjectURL(blob);
         anchor.target ="_blank";
         anchor.style.display = "none"; // just to be safe!
