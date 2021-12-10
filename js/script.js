@@ -47,7 +47,6 @@ const formatOutput = (data) => {
         const setKey = Object.keys(data[0]);
         // setting variables so we can grab them outside of the foreach below
         let email, usage, dmdsid, dmduid, keycode, keycode2, keycode3, keycode4, ins1, ins2, ins3;
-        console.log(data);
         // loop through the object so we can find the fields containg the values we need and retreive the col they are in
         getKey.forEach((key, index) => {
             if (key.toLowerCase().includes('email_address_')) {email = setKey[index]} ;
